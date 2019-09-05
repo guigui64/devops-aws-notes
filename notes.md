@@ -112,6 +112,47 @@ Setting AWS Config rules with Lambdas.
 - Red-Black (Netflix)
 - Immutable
 
+# Module 5 Infrastructure as Code
+
+Method for automating the process of creating, updating or deleting infrastructure.
+
+_CloudFormation_ templates to automate instanciation of stacks.
+
+## Lab 3 - Hands-on with AWS CloudFormation templates
+
+# Module 6 Developer Tools
+
+- _CodeCommit_: Use Git hooks, has pull request but no built-in Jenkins plugin
+- _CodeBuild_: yaml config
+- _CodeDeply_: yaml config
+- _Elastic Beanstalk_: has its own CLI, allows creating environments
+
+## Lab 4 - Creating a Continuous Delivery Toolchain with AWS CodeStar
+
+_CodeStar_ has templates for different apps (nodejs, python etc.)
+
+# Module 7 Tests
+
+Third party tools only. _CodeBuild_ can/should be used to run them.
+
 # Tricks
 
 From an EC2 instance, we can get a lot of info with `curl http://169.254.169.254/latest/meta-data/`
+
+# Services recap
+
+- _Config_ watches whole AWS resources linked to an account. More for **Security**
+- _CodePipeline_
+  - source provider : _CodeCommit_, _Amazon ECR_, _S3_ or Github (**no Gitlab**)
+  - solutions for Gitlab:
+    - web hooks
+    - _API gateway_
+    - lambda that kicks off _CodePipeline_
+  - Couldwatch events or _CodePipeline_ periodic polling
+  - Build: _CodeBuild_ or Jenkins
+  - Deploy: lots of solutions
+  - A stage can be added at any point with actions in it
+    - Action can be anything, even lambdas or manual approve
+    - Action groups are sequentials
+    - Actions execute in parallel
+- _Step Functions_ coordinates lambdas
